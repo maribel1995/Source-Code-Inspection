@@ -12,19 +12,20 @@ class Troco {
     protected PapelMoeda[] papeisMoeda;
 
     public Troco(int valor) {
+        int[] pm = {2, 5, 10, 20, 50, 100};
         papeisMoeda = new PapelMoeda[6];
-        int[] tipoPapelMoeda = {2, 5, 10, 20, 50, 100};
+        boolean achou = false;
 
         for (int i = 0; valor > 0; i++) {
-            int count = 0;
-            boolean achou = false;
-            for (int j = 0; j < tipoPapelMoeda.length && !achou; j++) {
-                if (tipoPapelMoeda[i] == valor) {
-                    while (valor % tipoPapelMoeda[i] != 0) {
-                        count++;
+            int cont = 0;
+            
+            for (int j = 0; j < pm.length && !achou; j++) {
+                if (pm[i] == valor) {
+                    while (valor % pm[i] != 0) {
+                        cont++;
                     }
-                    papeisMoeda[i] = new PapelMoeda(tipoPapelMoeda[i], count);
-                    valor = valor - (tipoPapelMoeda[i] * count);
+                    papeisMoeda[i] = new PapelMoeda(pm[i], cont);
+                    valor = valor - (pm[i] * cont);
                 }
             }
         }
