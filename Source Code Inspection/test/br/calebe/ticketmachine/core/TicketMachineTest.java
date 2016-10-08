@@ -42,15 +42,56 @@ public class TicketMachineTest {
     @After
     public void tearDown() {
     }
+    
+    @Test
+    public void inicializacaoNegativa()throws Exception {
 
+        tmNegativo = new TicketMachine(-20);
+        //Passou no Test e não deveria, pois inicializou com um preço negativo
+    }
     /**
      * Test of inserir method, of class TicketMachine.
      */
+    public void testInserirNota100() throws Exception {
+        tm.inserir(100);
+        assertEquals(100, tm.getSaldo());
+    }
+
     @Test
-    public void testInserir() throws Exception {
+    public void testInserirNota2() throws Exception {
+        tm.inserir(2);
+        assertEquals(2, tm.getSaldo());
+    }
+
+    public void testInserirNota50() throws Exception {
+        tm.inserir(50);
+        assertEquals(50, tm.getSaldo());
+    }
+
+    @Test
+    public void testInserirNota20() throws Exception {
+        tm.inserir(20);
+        assertEquals(20, tm.getSaldo());
+    }
+
+    @Test
+    public void testInserirNota5() throws Exception {
+        tm.inserir(5);
+        assertEquals(5, tm.getSaldo());
+    }
+
+    @Test
+    public void testInserirNota10() throws Exception {
         tm.inserir(10);
         assertEquals(10, tm.getSaldo());
     }
+
+    @Test
+    public void testInserirForcarErroNota() throws PapelMoedaInvalidaException {
+        tm.inserir(15);
+        assertEquals(15, tm.getSaldo());
+    }
+
 
     /**
      * Test of getSaldo method, of class TicketMachine.
@@ -77,8 +118,11 @@ public class TicketMachineTest {
      * Test of imprimir method, of class TicketMachine.
      */
     @Test
-    public void testImprimir() throws Exception {
-        assertEquals(tm.getSaldo(), tm.imprimir());
+    public void testImprimir() throws PapelMoedaInvalidaException, SaldoInsuficienteException {
+        tm.inserir(50);
+        tm.imprimir();
+        assertEquals("depois de inserir 50 reais e imprimir 20 seu saldo deverá ser 30", 50, tm.getSaldo());
+
     }
 
     /**
