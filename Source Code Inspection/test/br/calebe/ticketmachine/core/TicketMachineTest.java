@@ -6,6 +6,7 @@
 package br.calebe.ticketmachine.core;
 
 import br.calebe.ticketmachine.exception.PapelMoedaInvalidaException;
+import br.calebe.ticketmachine.exception.SaldoInsuficienteException;
 import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
