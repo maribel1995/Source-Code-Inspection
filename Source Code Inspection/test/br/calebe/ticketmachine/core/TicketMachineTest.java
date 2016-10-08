@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class TicketMachineTest {
     TicketMachine tm;
-    
+    TicketMachine tmNegativo;
     public TicketMachineTest() {
     }
     
